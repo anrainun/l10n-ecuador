@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_sri_configuration" name="SRI" sequence="10" />
+
+    <menuitem id="menu_sri_sign_electronic" name="Sign ELectronic" sequence="1" action="l10n_ec_sri_sing_electronic_action" parent="account.menu_finance" />
+
+</odoo>

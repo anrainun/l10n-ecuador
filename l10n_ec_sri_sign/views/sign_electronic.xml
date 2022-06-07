@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_ec_sri_sing_electronic_tree_view" model="ir.ui.view">
+        <field name="name">l10n_ec.sri.sign.electronic.tree.view</field>
+        <field name="model">l10n_ec.sri.sign.electronic</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="emision_date" />
+                <field name="expire_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="l10n_ec_sri_sing_electronic_form_view" model="ir.ui.view">
+        <field name="name">l10n_ec.sri.sign.electronic.form.view</field>
+        <field name="model">l10n_ec.sri.sign.electronic</field>
+        <field name="arch" type="xml">
+            <form duplicate="0">
+                <header>
+                    <button
+                        name="action_sign"
+                        string="Sing"
+                        type="object"
+                        class="oe_highlight"
+                        states="unverified"
+                    />
+                    <button
+                        name="action_validate_and_load"
+                        string="Validate Cert"
+                        type="object"
+                        class="oe_highlight"
+                        states="unverified"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+<!--                    <widget-->
+<!--                        name="web_ribbon"-->
+<!--                        text="Archived"-->
+<!--                        bg_color="bg-danger"-->
+<!--                        attrs="{'invisible': [('active', '=', True)]}"-->
+<!--                    />-->
+<!--                    <field name="active" invisible="1" />-->
+                    <group>
+                        <group>
+                            <field name="name" required="1" />
+                            <field name="company_id" groups="base.group_multi_company" />
+                            <field name="file_name" invisible="1" force_save="1" />
+                        </group>
+                        <group>
+                            <field name="tmp_file_name" invisible="1" force_save="1" />
+                            <field name="tmp_file_content" required="1" filename="tmp_file_name" />
+                            <field name="file_content" required="1" filename="file_name" />
+                            <field name="password" required="1" password="True" />
+                        </group>
+                    </group>
+                    <notebook colspan="2">
+                        <page string="Cert Info">
+                            <group>
+                                <group>
+                                    <field name="emision_date" />
+                                    <field name="subject_common_name" />
+                                    <field name="subject_serial_number" groups="base.group_system" />
+                                </group>
+                                <group>
+                                    <field name="expire_date" />
+                                    <field name="issuer_common_name" />
+                                    <field name="cert_serial_number" groups="base.group_system" />
+                                    <field name="cert_version" groups="base.group_system" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Private Key" groups="base.group_system">
+                            <field name="private_key" nolabel="1" colspan="2" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="l10n_ec_sri_sing_electronic_search_view" model="ir.ui.view">
+        <field name="name">l10n_ec.sri.sign.electronic.search.view</field>
+        <field name="model">l10n_ec.sri.sign.electronic</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="state" />
+            </search>
+        </field>
+    </record>
+    <record id="l10n_ec_sri_sing_electronic_action" model="ir.actions.act_window">
+        <field name="name">Electronic Signature Certs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">l10n_ec.sri.sign.electronic</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

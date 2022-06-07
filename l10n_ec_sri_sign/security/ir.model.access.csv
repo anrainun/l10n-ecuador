@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_l10n_ec_sri_sign_electronic,access.l10n_ec.sri.sign.electronic,model_l10n_ec_sri_sign_electronic,base.group_system,1,1,1,1
+
